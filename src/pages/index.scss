@@ -1,0 +1,35 @@
+@import "../mixins/mixins";
+
+* {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+
+  &__title {
+    text-align: center;
+  }
+
+  &__book-container {
+    display: flex;
+    flex-direction: column;
+
+    flex-wrap: wrap;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+
+    @include tablet {
+      flex-direction: row;
+      justify-content: space-around;
+    }
+  }
+
+  &__button {
+    @include button-styling;
+    width: 10rem;
+    margin: 2rem auto;
+  }
+}
