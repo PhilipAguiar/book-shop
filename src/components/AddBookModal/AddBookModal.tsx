@@ -85,8 +85,8 @@ const AddBookModal = ({ isActive, setAddBookActive }: Props) => {
             value={newBook.category}
             onChange={(e) => setNewBook({ ...newBook, category: e.target.value })}
           />
+          <ImageUploader handleAddImage={handleAddImage} />
         </div>
-        <ImageUploader handleAddImage={handleAddImage} />
 
         <button type="button" onClick={handleAddBook}>
           Add Book
