@@ -49,8 +49,7 @@ const EditBookModal = ({ isActive, setEditBookActive, book }: Props) => {
               onChange={(e) => setNewBook({ ...newBook, author: e.target.value })}
             />
             <label>Description</label>
-            <input
-              type="text"
+            <textarea
               placeholder="Description"
               value={newBook.description}
               onChange={(e) => setNewBook({ ...newBook, description: e.target.value })}
