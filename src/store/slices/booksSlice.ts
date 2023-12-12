@@ -36,7 +36,7 @@ export const fetchBooks = createAsyncThunk("books/fetchBooks", async () => {
         description: book.description,
         image: book.book_image,
         category: "Fiction",
-        price: "10",
+        price: 10,
       };
     });
 

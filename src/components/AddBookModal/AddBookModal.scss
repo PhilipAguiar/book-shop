@@ -65,6 +65,10 @@
       }
     }
   }
+
+  &__button {
+    @include button-styling;
+  }
   &__content {
     background-color: #fff;
     padding: 20px;
@@ -97,16 +101,6 @@
       font-size: 28px;
       margin-bottom: 20px;
       color: #333;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      button {
-        @include button-styling;
-      }
     }
 
     .close-button {

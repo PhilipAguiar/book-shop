@@ -18,7 +18,7 @@ const AddBookModal = ({ isActive, setAddBookActive }: Props) => {
     author: "",
     description: "",
     image: "",
-    price: "",
+    price: 0,
     category: "",
   });
 
@@ -35,11 +35,21 @@ const AddBookModal = ({ isActive, setAddBookActive }: Props) => {
       author: "",
       description: "",
       image: "",
-      price: "",
+      price: 0,
       category: "",
     });
 
     setAddBookActive(false);
+  };
+
+  const handleEmptyFields = () => {
+    const { author, category, description, image, price, title } = newBook;
+
+    if (!author || !category || !description || !image || !price || !title) {
+      return true;
+    }
+
+    return false;
   };
 
   return (
@@ -50,6 +60,7 @@ const AddBookModal = ({ isActive, setAddBookActive }: Props) => {
         <div className="modal__input-container">
           <label>Title</label>
           <input
+            required
             type="text"
             id="title"
             placeholder="Title"
@@ -59,6 +70,7 @@ const AddBookModal = ({ isActive, setAddBookActive }: Props) => {
 
           <label>Author</label>
           <input
+            required
             type="text"
             id="author"
             placeholder="Author"
@@ -70,15 +82,17 @@ const AddBookModal = ({ isActive, setAddBookActive }: Props) => {
 
           <label>Price</label>
           <input
-            type="text"
+            required
+            type="number"
             id="price"
             placeholder="Price"
             value={newBook.price}
-            onChange={(e) => setNewBook({ ...newBook, price: e.target.value })}
+            onChange={(e) => setNewBook({ ...newBook, price: Number(e.target.value) })}
           />
 
           <label>Category</label>
           <input
+            required
             type="text"
             id="category"
             placeholder="Category"
@@ -88,7 +102,7 @@ const AddBookModal = ({ isActive, setAddBookActive }: Props) => {
           <ImageUploader handleAddImage={handleAddImage} />
         </div>
 
-        <button type="button" onClick={handleAddBook}>
+        <button className="modal__button" disabled={handleEmptyFields()} type="button" onClick={handleAddBook}>
           Add Book
         </button>
         <button

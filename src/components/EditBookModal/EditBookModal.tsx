@@ -25,6 +25,16 @@ const EditBookModal = ({ isActive, setEditBookActive, book }: Props) => {
     setEditBookActive(false);
   };
 
+  const handleEmptyFields = () => {
+    const { author, category, description, image, price, title } = newBook;
+
+    if (!author || !category || !description || !image || !price || !title) {
+      return true;
+    }
+
+    return false;
+  };
+
   return (
     <div className={`modal ${isActive && "modal--open"}`}>
       <div className="modal__content">
@@ -61,7 +71,7 @@ const EditBookModal = ({ isActive, setEditBookActive, book }: Props) => {
               id="price"
               placeholder="Price"
               value={newBook.price}
-              onChange={(e) => setNewBook({ ...newBook, price: e.target.value })}
+              onChange={(e) => setNewBook({ ...newBook, price: Number(e.target.value) })}
             />
 
             <label>Category</label>
@@ -76,7 +86,7 @@ const EditBookModal = ({ isActive, setEditBookActive, book }: Props) => {
 
           <ImageUploader handleAddImage={handleAddImage} />
 
-          <button type="button" onClick={handleEditBook}>
+          <button className="modal__button" disabled={handleEmptyFields()} type="button" onClick={handleEditBook}>
             Edit Book
           </button>
         </form>
