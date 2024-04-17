@@ -14,7 +14,7 @@ const initialState: BooksState = {
   status: "idle",
 };
 
-const API_KEY = "kDGpvojMoFGxW0GXn9MpSXh50Uev1R4x";
+const API_KEY = "";
 
 export const getBook = (state: RootState, id: string) => {
   return state.books.books.find((book) => book.id === id);
@@ -22,7 +22,9 @@ export const getBook = (state: RootState, id: string) => {
 
 export const fetchBooks = createAsyncThunk("books/fetchBooks", async () => {
   try {
-    const response = await fetch(`https://api.nytimes.com/svc/books/v3/lists/overview.json?api-key=${API_KEY}`);
+    const response = await fetch(
+      `https://api.nytimes.com/svc/books/v3/lists/overview.json?api-key=${API_KEY}`
+    );
     if (!response.ok) {
       throw new Error("Failed to fetch books");
     }
@@ -58,7 +60,9 @@ const booksSlice = createSlice({
     },
     editBook: (state, action: PayloadAction<Book>) => {
       const updatedBook = action.payload;
-      const bookIndex = state.books.findIndex((book) => book.id === updatedBook.id);
+      const bookIndex = state.books.findIndex(
+        (book) => book.id === updatedBook.id
+      );
 
       if (bookIndex !== -1) {
         const updatedBooks = [...state.books];
